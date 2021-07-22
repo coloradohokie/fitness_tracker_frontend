@@ -13,7 +13,6 @@ class Layout extends Component {
                 <NavBar />
                 <main className={classes.Content}>
                     {this.props.children}
-                    Some Text
                 </main>
             </>
         )
