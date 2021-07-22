@@ -17,48 +17,26 @@ class App extends React.Component {
       id: 1,
       name: 'Mike'
     },
-    activityHistory: [
-        {
-            date: 'February 10, 2021',
-            activity: 'Sledding',
-            distance: '0',
-            duration: '30'
-        },
-        {
-            date: 'February 12, 2021',
-            activity: 'Running',
-            distance: '3.5',
-            duration: '32'
-        },
-        {
-            date: 'February 14, 2021',
-            activity: 'Dancing',
-            distance: '0',
-            duration: '80'
-        }
-    ]
+    activityHistory: []
   }
 
   onSubmitLogin = async (payload) => {
-    // return async dispatch => {
-        try {
-            const response = await AJAX('login', 'POST', false, payload)
-            console.log(response)
-            if (!response || !response.token) throw new Error ('Bad Login')
-            
-            localStorage.setItem('token', response.token)
-            const expirationDate = new Date(new Date().getTime() + (response.expiration * 1000))
-            localStorage.setItem('expirationDate', expirationDate)
-            localStorage.setItem('username', response.username)
-            localStorage.setItem('userId', response.user_id)
-            this.setState({isAuthenticated:true})
-            window.location.href = "/"
-            
-        } catch (error) {
-            console.error(error)  
-        }
-    // } 
-    
+    try {
+        const response = await AJAX('login', 'POST', false, payload)
+        console.log(response)
+        if (!response || !response.token) throw new Error ('Bad Login')
+        
+        localStorage.setItem('token', response.token)
+        const expirationDate = new Date(new Date().getTime() + (response.expiration * 1000))
+        localStorage.setItem('expirationDate', expirationDate)
+        localStorage.setItem('username', response.username)
+        localStorage.setItem('userId', response.user_id)
+        this.setState({isAuthenticated:true})
+        window.location.href = "/"
+        
+    } catch (error) {
+        console.error(error)  
+    }
   }
 
   logOut = () => {
@@ -68,7 +46,6 @@ class App extends React.Component {
     localStorage.removeItem('username')
     localStorage.removeItem('userId')
     this.setState({isAuthenticated: false})
-    window.location.href = "/auth"
   }
 
   fetchActivities = async () => {
@@ -147,12 +124,15 @@ class App extends React.Component {
       )
     }
 
-  
-    return (
-      <Layout isAuthenticated={this.state.isAuthenticated} logout={this.logOut}>
-        {routes}
-      </Layout>
-    );
+    if (this.state.isAuthenticated) {
+      return (
+        <Layout isAuthenticated={this.state.isAuthenticated} logout={this.logOut}>
+          {routes}
+        </Layout>
+      )
+    }
+
+    return (<Auth onSubmitLogin={this.onSubmitLogin} />)
   }
 }
 
