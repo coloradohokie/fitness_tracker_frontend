@@ -8,7 +8,7 @@ const activityHistory = (props) => {
         props.activityHistory.map((item, index) => (
             <ActivityItem 
                 key = {index}
-                activity= {item.activity}
+                activity= {item.name}
                 date={item.date}
                 distance = {item.distance}
                 duration = {item.duration}                

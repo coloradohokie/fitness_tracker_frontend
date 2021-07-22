@@ -6,7 +6,10 @@ class Layout extends Component {
     render() {
         return (
             <>
-                <NavBar />
+                <NavBar
+                    isAuthenticated = {this.props.isAuthenticated}
+                    logout={this.props.logout}
+                />
                 <main className={classes.Content}>
                     {this.props.children}
                 </main>

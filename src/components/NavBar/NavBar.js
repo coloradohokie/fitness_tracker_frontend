@@ -7,8 +7,8 @@ import Logout from '../Logout/Logout'
 const NavBar = (props) => (
     <header className={classes.NavBar}>
         <nav className={classes.DesktopOnly}>
-            <NavigationItems />
-            <Logout />
+            <NavigationItems isAuthenticated={props.isAuthenticated} />
+            <Logout logout={props.logout} />
         </nav>
     </header>
 )
