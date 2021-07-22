@@ -40,7 +40,6 @@ class App extends React.Component {
   }
 
   logOut = () => {
-    console.log('LOGOUT')
     localStorage.removeItem('token')
     localStorage.removeItem('expirationDate')
     localStorage.removeItem('username')
@@ -79,22 +78,16 @@ class App extends React.Component {
 
 
 
-  addActivity = (activity) => {
-    const payload = {
-      userid: this.state.user.id,
-      name: activity.name,
-      date: activity.date,
-      duration: activity.duration,
-      distance: activity.distance
-    }
+  onAddActivity = async (payload) => {
     const endpoint="/activities"
-    fetch(BASE_URL.concat(endpoint), {
-      method: 'POST',
-      headers: {"Content-Type": "application/json"},
-      body: JSON.stringify(payload)
-    })
-    .then(response => response.json())
-    .then(response => console.log(response))
+    try {
+      const response = await AJAX(endpoint, 'POST', true, payload)
+      let activityHistory = this.state.activityHistory.push(payload)
+      this.setState({activityHistory: activityHistory})
+      console.log(this.state)
+    } catch (error) {
+      console.error(error)
+    }
   }
 
   componentDidMount = () => {
@@ -114,7 +107,7 @@ class App extends React.Component {
       routes = (
         <Switch>
           <Route exact path='/'>
-            <MyActivity activityHistory={this.state.activityHistory} />
+            <MyActivity activityHistory={this.state.activityHistory} onAddActivity={this.onAddActivity} />
           </Route>
     
           <Route exact path='/all-activity'>

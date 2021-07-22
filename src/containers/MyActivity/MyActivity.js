@@ -8,7 +8,7 @@ class MyActivity extends Component {
         return (
             <div>
                 <h1>Add Activity</h1>
-                <AddActivity />
+                <AddActivity onAddActivity={this.props.onAddActivity} />
                 <h1>Activity History</h1>
                 <ActivityHistory activityHistory={this.props.activityHistory} />
             </div>
