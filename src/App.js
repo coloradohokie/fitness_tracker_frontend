@@ -68,6 +68,7 @@ class App extends React.Component {
     localStorage.removeItem('username')
     localStorage.removeItem('userId')
     this.setState({isAuthenticated: false})
+    window.location.href = "/auth"
   }
 
   fetchActivities = async () => {
