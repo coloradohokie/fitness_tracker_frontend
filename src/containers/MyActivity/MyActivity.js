@@ -10,7 +10,7 @@ class MyActivity extends Component {
                 <h1>Add Activity</h1>
                 <AddActivity />
                 <h1>Activity History</h1>
-                <ActivityHistory />
+                <ActivityHistory activityHistory={this.props.activityHistory} />
             </div>
         )
     }

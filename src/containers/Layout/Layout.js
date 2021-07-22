@@ -3,10 +3,6 @@ import classes from './Layout.module.scss'
 import NavBar from '../../components/NavBar/NavBar'
 
 class Layout extends Component {
-    state = {
-        isAuthenticated: true
-    }
-
     render() {
         return (
             <>
