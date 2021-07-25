@@ -8,15 +8,9 @@ import MyActivity from './containers/MyActivity/MyActivity';
 import Auth from './containers/Auth/Auth'
 import {AJAX} from './shared/utility'
 
-const BASE_URL = 'http://localhost:3000/'
-
 class App extends React.Component {
   state = {
     isAuthenticated: false,
-    user: {
-      id: 1,
-      name: 'Mike'
-    },
     activityHistory: []
   }
 
@@ -75,7 +69,6 @@ class App extends React.Component {
         }
     }
   }
-
 
 
   onAddActivity = async (payload) => {

@@ -82,7 +82,7 @@ class AddActivity extends Component {
                 user_id: localStorage.getItem('userId'),
                 date: this.state.controls.date.value,
                 name: this.state.controls.name.value,
-                distance: this.state.controls.distance.value,
+                distance: this.state.controls.distance.value * 5280,
                 duration: this.state.controls.duration.value
             }
             this.props.onAddActivity(newActivity)
