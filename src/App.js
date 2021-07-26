@@ -74,21 +74,21 @@ class App extends React.Component {
 
 
   onAddActivity = async (payload) => {
+    let activityHistory = this.state.activityHistory
     const endpoint="/activities"
     try {
       const response = await AJAX(endpoint, 'POST', true, payload)
-      let activityHistory = this.state.activityHistory
       activityHistory.push({
         id: response.id,
         user_id: parseInt(response.user_id),
         distance: parseInt(response.distance),
         duration: parseInt(response.duration),
         name: response.name
-      })
-      this.setState({activityHistory: activityHistory})
+      })      
     } catch (error) {
       console.error(error)
     }
+    this.setState({activityHistory: activityHistory})
   }
 
   componentDidMount = () => {
