@@ -6,7 +6,7 @@ const activityItem = (props) => (
         <td>{props.activity}</td>
         <td>{props.distance} miles</td>
         <td>{props.duration} minutes</td>
-        <td>{props.duration/props.distance > 20? props.duration/20 : props.distance}</td>
+        <td>{props.credits}</td>
     </tr>
 )
 

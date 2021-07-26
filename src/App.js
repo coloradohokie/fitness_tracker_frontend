@@ -42,11 +42,13 @@ class App extends React.Component {
   }
 
   fetchActivities = async () => {
+    const startDate = new Date ('2021-07-16 0:00:00 GMT-6:00')
+    const millisecondsInAWeek = 604800000
     const endpoint="/activities"
     try {
       const response = await AJAX(endpoint)
+      response.forEach(element => element.weekNumber = Math.trunc((new Date(element.date).getTime() - startDate.getTime())/millisecondsInAWeek) + 1)
       this.setState({activityHistory: response})
-      console.log(this.state)
     } catch (error) {
       console.error(error)
     }
@@ -74,10 +76,16 @@ class App extends React.Component {
   onAddActivity = async (payload) => {
     const endpoint="/activities"
     try {
-      const response = await AJAX(endpoint, 'POST', true, payload)
-      let activityHistory = this.state.activityHistory.push(payload)
+      await AJAX(endpoint, 'POST', true, payload)
+      let activityHistory = this.state.activityHistory
+      activityHistory.push({
+        id: 999999999999,
+        user_id: parseInt(payload.user_id),
+        distance: parseInt(payload.distance),
+        duration: parseInt(payload.duration),
+        name: payload.name
+      })
       this.setState({activityHistory: activityHistory})
-      console.log(this.state)
     } catch (error) {
       console.error(error)
     }
