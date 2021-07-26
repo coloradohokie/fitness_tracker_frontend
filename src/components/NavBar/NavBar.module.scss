@@ -19,6 +19,16 @@
     }
 }
 
+.UserName {
+    margin: 10px 0;
+    width: 100%;
+    box-sizing: border-box;
+    display: block;
+    color: hsl(240, 0%, 100%);
+    font-weight: bold;
+    text-decoration: none;
+}
+
 .DesktopOnly {
     display: flex;
     justify-content: space-between;

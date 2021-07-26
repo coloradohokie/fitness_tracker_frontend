@@ -54,8 +54,8 @@ class Auth extends Component {
         event.preventDefault();
         try {
             const payload = {
-                username: this.state.controls.username.value, 
-                password: this.state.controls.password.value
+                username: this.state.controls.username.value.toLowerCase(), 
+                password: this.state.controls.password.value.toLowerCase()
             }
             this.props.onSubmitLogin(payload)
         } catch (error) {
