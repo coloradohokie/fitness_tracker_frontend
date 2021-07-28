@@ -114,7 +114,7 @@ class App extends React.Component {
           </Route>
     
           <Route exact path='/all-activity'>
-            <AllActivity />
+            <AllActivity activityHistory={this.state.activityHistory} />
           </Route>
         </Switch>
       )
