@@ -85,10 +85,12 @@ class App extends React.Component {
         duration: parseInt(response.duration),
         name: response.name
       })      
+      this.setState({activityHistory: activityHistory})
+      console.log('hit')
+      window.location.href = "/"
     } catch (error) {
       console.error(error)
     }
-    this.setState({activityHistory: activityHistory})
   }
 
   componentDidMount = () => {
